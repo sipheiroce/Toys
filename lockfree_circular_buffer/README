@@ -1,2 +1,2 @@
 g++ lf_buffer.cpp -I /usr/include/malloc -std=c++11 -DDCACHE1_LINESIZE=64
-
+g++ 1.cc -I /usr/include/malloc  -DDCACHE1_LINESIZE=64 -lboost_system -lboost_thread -L ~/work/gdbms_axicom3/gdbms/src/third_party/boost/release/lib/ -g

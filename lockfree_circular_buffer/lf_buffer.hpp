@@ -153,7 +153,7 @@ public:
 		 * We do not know when a consumer uses the pop()'ed pointer,
 		 * se we can not overwrite it and have to wait the lowest tail.
 		 */
-		while (__builtin_expect(thr_pos().head >= last_tail_ + Q_SIZE, 0))
+		while (__builtin_expect(thr_pos(id).head >= last_tail_ + Q_SIZE, 0))
 		{
 			unsigned long min = tail_;
 
@@ -171,7 +171,8 @@ public:
 
 			if (thr_pos(id).head < last_tail_ + Q_SIZE)
 				break;
-			_mm_pause();
+			//_mm_pause();
+                        usleep(50);
 		}
 
 		ptr_array_[thr_pos(id).head & Q_MASK] = ptr;
@@ -218,7 +219,8 @@ public:
 
 			if (thr_pos(id).tail < last_head_)
 				break;
-			_mm_pause();
+			//_mm_pause();
+                        usleep(50);
 		}
 
 		T *ret = ptr_array_[thr_pos(id).tail & Q_MASK];
