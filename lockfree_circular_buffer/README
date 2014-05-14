@@ -1,0 +1,2 @@
+g++ lf_buffer.cpp -I /usr/include/malloc -std=c++11 -DDCACHE1_LINESIZE=64
+

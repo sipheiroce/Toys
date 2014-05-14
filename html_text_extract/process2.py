@@ -3,6 +3,7 @@ import re
 import os
 
 def process_html(fname):
+    print fname
     f=open(fname, "r")
     content = f.read()
     f.close()
@@ -20,6 +21,10 @@ def process_html(fname):
     for d in soup.find_all(id=re.compile("mod-a-body")):
         for p in d.find_all("p"):
             out_c = out_c +  str(p)[3:-4] + "\n\n"
+
+    for dp in soup.find_all("div", class_="articleBody"):
+        for p in dp.find_all("p"):
+            out_c = out_c + p.getText().encode('utf-8').strip() + "\n\n"
   
     f.write(out_c)
     f.close()
